@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native'
 import firestore, { getDocs, collection } from 'firebase/firestore'
 import { FIREBASE_DB } from '../../firebaseConfig'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,11 +8,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function HomeScreen({ navigation }) {
 
+    const onPress = () => {
+        navigation.navigate('CarDetails')
+    }
+
     const cars = useSelector(state => state.carsReducer)
     const dispatch = useDispatch()
 
     useEffect(() => {
         // Disable temporarily duo to limited quota 
+
         // const doc = getDocs(collection(FIREBASE_DB, 'cars'))
         //     .then((snapshot) => {
         //         const cars = [];
@@ -86,34 +91,36 @@ export default function HomeScreen({ navigation }) {
                     },
                 ]}
                 renderItem={({ item }) =>
-                    <View style={styles.itemContainer}>
-                        <View style={styles.itemTitleContainer}>
-                            <Text style={styles.itemTitle}>{item.model}</Text>
-                            <Text style={styles.itemTitle}>{item.name}</Text>
-                            <Text style={styles.itemsubTitle}>{item.plate_number}</Text>
-                        </View>
-                        <Image
-                            style={styles.itemImage}
-                            source={{
-                                url: item.image_url,
-                            }}
-                        />
-                        <View style={styles.itemBottomContainer}>
-                            <View style={styles.itemBottomLeftDetails}>
-                                <Text>{item.location}</Text>
-                                <View style={{ flexDirection: 'row', paddingTop: 4 }}>
-                                    <Ionicons name='car' size={16} color='blue' />
-                                    <Text style={{paddingRight: 4}}>{item.fuel_percentage}%</Text>
-                                    <Ionicons name='location' size={16} color='blue' />
-                                    <Text>{item.distance}</Text>
+                    <TouchableOpacity onPress={onPress}>
+                        <View style={styles.itemContainer}>
+                            <View style={styles.itemTitleContainer}>
+                                <Text style={styles.itemTitle}>{item.model}</Text>
+                                <Text style={styles.itemTitle}>{item.name}</Text>
+                                <Text style={styles.itemsubTitle}>{item.plate_number}</Text>
+                            </View>
+                            <Image
+                                style={styles.itemImage}
+                                source={{
+                                    url: item.image_url,
+                                }}
+                            />
+                            <View style={styles.itemBottomContainer}>
+                                <View style={styles.itemBottomLeftDetails}>
+                                    <Text>{item.location}</Text>
+                                    <View style={{ flexDirection: 'row', paddingTop: 4 }}>
+                                        <Ionicons name='car' size={16} color='blue' />
+                                        <Text style={{ paddingRight: 4 }}>{item.fuel_percentage}%</Text>
+                                        <Ionicons name='location' size={16} color='blue' />
+                                        <Text>{item.distance}</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.itemBottomRightDetails}>
+                                    <Text>RM{item.hourly_rental_price}</Text>
+                                    <Text style={{ paddingTop: 4 }}>For 1 hour, 0 minutes</Text>
                                 </View>
                             </View>
-                            <View style={styles.itemBottomRightDetails}>
-                                <Text>RM{item.hourly_rental_price}</Text>
-                                <Text style={{paddingTop: 4}}>For 1 hour, 0 minutes</Text>
-                            </View>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                 }
             />
         </View>
