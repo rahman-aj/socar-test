@@ -38,6 +38,7 @@ export default function HomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <FlatList
+            // Should use carList instead of data
                 data={data = [
                     {
                         'model': 'Proton',
@@ -111,11 +112,11 @@ export default function HomeScreen({ navigation }) {
                                         <Ionicons name='car' size={16} color='blue' />
                                         <Text style={{ paddingRight: 4 }}>{item.fuel_percentage}%</Text>
                                         <Ionicons name='location' size={16} color='blue' />
-                                        <Text>{item.distance}</Text>
+                                        <Text>{item.distance}km</Text>
                                     </View>
                                 </View>
                                 <View style={styles.itemBottomRightDetails}>
-                                    <Text>RM{item.hourly_rental_price}</Text>
+                                    <Text style={{ textAlign: 'right' }}>RM{item.hourly_rental_price}</Text>
                                     <Text style={{ paddingTop: 4 }}>For 1 hour, 0 minutes</Text>
                                 </View>
                             </View>

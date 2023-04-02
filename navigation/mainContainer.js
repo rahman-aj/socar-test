@@ -18,7 +18,7 @@ import CarDetailsScreen from './screens/carDetailsScreen';
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator();
 
-function Home() {
+function TabBar() {
     return (
         <Tab.Navigator
             initialRouteName={'Home'}
@@ -56,7 +56,7 @@ export default function MainContainer() {
                 <Stack.Navigator>
                     <Stack.Screen
                         name="TabBar"
-                        component={Home}
+                        component={TabBar}
                         options={{ headerShown: false }}
                     />
                     <Stack.Screen name="CarDetails" component={CarDetailsScreen} />
