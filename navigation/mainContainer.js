@@ -55,7 +55,7 @@ export default function MainContainer() {
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen
-                        name="Home"
+                        name="TabBar"
                         component={Home}
                         options={{ headerShown: false }}
                     />

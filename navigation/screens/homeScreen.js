@@ -8,8 +8,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function HomeScreen({ navigation }) {
 
-    const onPress = () => {
-        navigation.navigate('CarDetails')
+    const onPress = (item) => {
+        navigation.navigate('CarDetails', { item: item })
     }
 
     const cars = useSelector(state => state.carsReducer)
@@ -91,7 +91,7 @@ export default function HomeScreen({ navigation }) {
                     },
                 ]}
                 renderItem={({ item }) =>
-                    <TouchableOpacity onPress={onPress}>
+                    <TouchableOpacity onPress={() => onPress(item)}>
                         <View style={styles.itemContainer}>
                             <View style={styles.itemTitleContainer}>
                                 <Text style={styles.itemTitle}>{item.model}</Text>
