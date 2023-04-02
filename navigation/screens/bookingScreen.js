@@ -10,10 +10,16 @@ import CompletedBookingScreen from './booking/completedBookingScreen';
 
 export default function BookingScreen({ navigation }) {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+            initialRouteName='Active'
+            screenOptions={{
+                tabBarActiveTintColor: 'blue',
+                tabBarInactiveTintColor: 'gray',
+            }}
+        >
             <Tab.Screen name="Active" component={ActiveBookingScreen} />
             <Tab.Screen name="UpComing" component={UpcomingBookingScreen} />
-            <Tab.Screen name="Completed" component={CompletedBookingScreen} />
+            <Tab.Screen name="Ended" component={CompletedBookingScreen} />
         </Tab.Navigator>
     )
 }
