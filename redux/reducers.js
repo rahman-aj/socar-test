@@ -1,5 +1,4 @@
-import { SET_CAR_LIST } from "./actions";
-import { SET_RESERVATION_LIST } from "./actions";
+import { SET_CAR_LIST, SET_RESERVATION_LIST } from "./actions";
 
 const initialState = {
     cars: [],
